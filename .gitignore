@@ -1,0 +1,6 @@
+**/__pycache__/
+.vscode/
+static/
+venv/
+*.db
+fastText/
