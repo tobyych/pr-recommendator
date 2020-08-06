@@ -4,3 +4,4 @@ static/
 venv/
 *.db
 fastText/
+config.ini
