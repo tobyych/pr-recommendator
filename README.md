@@ -51,46 +51,55 @@ To fulfil the project focuses:
    - NewsAPI, The New York Times API
 2. Text summarisation
    - Extractive summary: turn an article into a handful number of key sentences
+   - Abstractive summary: end-to-end sequential model generates textual summary
 3. Key entities detecion
    - Name Entity Recognition (NER): list the name entities in the article
-   - Extract the top-ranked entities from text documents
+   - Extract the top-ranked entities from text documents using TextRank algorithm
 4. Sentiment scoring
-   - Gives a sentiment score on each article and use the scores to detect if there is a upsurge or downfall in sentiment
+   - Gives two sentiment scores on each article: an overall score and a aspect-based score
+   - Use the scores to detect if there is a upsurge or downfall in sentiment
 
-## KaTeX
+**Exact duplicate** is also checked at insertion into the database. The implementation is done by hashing the article into a numeric value and check whether there is a document with the exact same hash in the database table already. A row can only be inserted if there is no existing row with same hash in the database table.
 
-You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):
+### Details
 
-The _Gamma function_ satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
+#### Text summarisation
 
-$$
-\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
-$$
+Extractive summarisation is powered by the pretrained BERT model. First, the document is broken down into sentences and each sentence is embedded to a vector representation using pretrained BERT model weights. Second, a k-means clustering algorithm is run through the sentence embeddings and the sentences that are closest to the cluster's centroids are returned. This method is chosen since transformer archietectures are known to perform better than encoder-decoder networks on long sequences, where sentence embeddings with better quality could be obtained.
 
-> You can find more information about **LaTeX** mathematical expressions [here](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
+On the other hand, for abstractive summarisation, a pretrained version of T5 (Text-to-text Transfer Transformer) [(link to original paper)](https://arxiv.org/pdf/1910.10683.pdf) is used. The main capability of this model is its ability to operate all a multitude of NLP tasks including text summarisation. It is a model that conditionally generate output based on the input, for example, if we give it an input "summarize: ...", the output would be a summary of the given text.
 
-## UML diagrams
+### Key entities detection
 
-You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
+spaCy v2.0's Named Entity Recognition (NER) is employed to find the key entities in each article. The NER system in spaCy incorporates the use of a residual convolutional nerual network with bloom embeddings, based on transitions of the entity tags in a sequence. 1D convolutional filters are applied over the input text to predict how the upcoming words may change the current entity tags. Upcoming words may either shift (change the entity), reduce (make the entity more granular), or output the entity. The input sequence is embedded with bloom embeddings, which model the characters, prefix, suffix, and part of speech of each word. Residual blocks are used for the CNNs, and the filter sizes are chosen with beam search.
 
-```mermaid
-sequenceDiagram
-Alice ->> Bob: Hello Bob, how are you?
-Bob-->>John: How about you John?
-Bob--x Alice: I am good thanks!
-Bob-x John: I am good thanks!
-Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
+As we are interested in person or organisations instead of any possible entity, we would like to refine the key entities recognized in the above algorithm. A word-level ranking algorithm is thus useful for selecting particularly interesting entities. The algorithm used in the application is [TextRank](http://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf). It is a graph-based algorithm where the graph is constructed by looking which words follow one another. The edge weight is defined to be higher whenever two words occur more frequently next to each other in the text.
 
-Bob-->Alice: Checking with John...
-Alice->John: Yes... John, how are you?
-```
+### Sentiment scoring
 
-And this will produce a flow chart:
+Each article will receive two sentiment scores, one is the overall score for the whole article, another is the aspect-based sentiment score. The overall score is given by the sentiment module in a Python library called [TextBlob](https://textblob.readthedocs.io/en/dev/). The sentiment scorer is implemented using a Naive Bayes algorithm trained on annotated movie reviews and it calculates the average polarity and subjectivity over the words in a document. The inference speed is very fast compared to deep learning models and the memory footprint is low, which makes it suitable for real-world application.
 
-```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
-```
+However, it is often the case that the article mentions the target company in one sentence but talks about another company for the most part of it. In this case, the sentiment score from TextBlob may not be attributed to the target company, but another entity. Therefore, it is of interest to find a query sensitive sentiment scorer. An open source GitHub project provides an API to use its pretrained model for inference. The training task is formulated as a sequence-pair classification, which is analogical to BERT's next-sentence prediction, where each example in the training data is described in the following format: "[CLS] text subtokens [SEP] aspect subtokens [SEP]". The relation between the text and aspect would then be encoded into the CLS token.
+
+## Workflow
+
+The workflow of the application is as follows:
+
+1. Fetch data from public APIs to obtain news data
+2. Check if there is an exact duplicate in the database. If no, insert it into database.
+3. Process the news articles in the database and insert the processed output into the database.
+4. Query the database to obtain interested information or build a frontend application to display the results. (To avoid displaying out-of-date articles, select news articles published within a week for example)
+
+## Screenshots
+
+These screenshots serve as an example how to use the application and visualise the processed data.
+
+## Ideas that are not implemented
+
+There are several ideas that I think are interesting to the application but not implemented yet.
+
+- Add more data sources (may even be multilingual) and present the geographical distribution of the sentiments. This can allow PR managers to understand the dynamics across geographical locations and where to prioritise when constructing a PR strategy for a customer. Also, media coverage of different data sources can also be analysed to understand which media outlet has the greatest cost effectiveness.
+- Implement deduplication for near-duplicates. MinHash algorithm with Local Sensitivity Hashing could be used as a starting point.
+- Incorporate competitiors as information to the application, so that when a competitor is mentioned as a key entity in an article, it may be of higher interest for the PR manager to read.
+- Survey the most interesting questions PR manager may ask when they first read an article. Form templates and use model such as BERT to perform such question answering task.
+- Simplify the language used in the article, and link rare words with references in Wikipedia, so that users can understand the article better without much background knowledge.
