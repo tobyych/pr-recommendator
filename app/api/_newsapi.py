@@ -1,8 +1,10 @@
-from newsapi import NewsApiClient
-from api.article_extractor import get_full_text
 from configparser import ConfigParser
 from datetime import datetime, timedelta
+
+from api.article_extractor import get_full_text
+from newsapi import NewsApiClient
 from schema.article import Article
+
 
 class NewsAPIWrapper:
   def __init__(self):

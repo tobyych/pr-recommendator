@@ -5,3 +5,4 @@ venv/
 *.db
 fastText/
 ./config.ini
+lightvenv/

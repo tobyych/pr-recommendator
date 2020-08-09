@@ -1,6 +1,7 @@
 import sqlite3
-from config import config
 from collections import namedtuple
+
+from config import config
 
 BATCH_SIZE = 100
 

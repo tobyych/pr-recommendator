@@ -1,5 +1,6 @@
-import spacy
 import pytextrank
+import spacy
+
 
 class RankedNameEntityWrapper:
   def __init__(self):

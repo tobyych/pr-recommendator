@@ -1,4 +1,3 @@
-from config import config
 import os
 os.environ['PYTHONHASHSEED'] = 0
 
@@ -71,8 +70,7 @@ if __name__ == '__main__':
   if args.init:
     DB.init_db()
     exit()
-  
-  from api._newsapi import NewsAPIWrapper
+
   from api.nytimes import NYTimesAPIWrapper
 
   if args.crawl:

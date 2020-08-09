@@ -1,7 +1,7 @@
 import torch
-import json 
-from transformers import T5Tokenizer, T5ForConditionalGeneration, T5Config
 from summarizer import Summarizer
+from transformers import T5Tokenizer, T5ForConditionalGeneration
+
 
 class T5AbstractiveSummariser:
   def __init__(self):

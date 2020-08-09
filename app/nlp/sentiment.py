@@ -1,5 +1,6 @@
-from textblob import TextBlob
 import aspect_based_sentiment_analysis as absa
+from textblob import TextBlob
+
 
 class ABSAWrapper:
   def __init__(self):

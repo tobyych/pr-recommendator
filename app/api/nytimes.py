@@ -1,9 +1,10 @@
-import requests
-import json
-from api.article_extractor import get_full_text
 from configparser import ConfigParser
 from datetime import datetime, timedelta
+
+import requests
+from api.article_extractor import get_full_text
 from schema.article import Article
+
 
 class NYTimesAPIWrapper:
   def __init__(self):
