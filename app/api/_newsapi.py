@@ -15,7 +15,7 @@ class NewsAPIWrapper:
     response = self.api_client.get_everything(q=query,
                                              sources='bbc-news,the-verge',
                                              domains='bbc.co.uk,techcrunch.com',
-                                             from_param=(datetime.now() - timedelta(7)).strftime('%Y-%m-%d'),
+                                             from_param=(datetime.now() - timedelta(3)).strftime('%Y-%m-%d'),
                                              language='en',
                                              sort_by='popularity',
                                              page_size=100,
