@@ -1,14 +1,4 @@
-# pr-recommendator
-
-Tries to fetch News from different publicly available APIs and analyse them to extract insights and suggest Public Relations related actions.
-
-To-do list:
-
-- add logging module
-- try building up the database with more public available APIs
-- add preprocessing module
-
-# News Tracker
+# PR Recommendator - A News Tracker
 
 This GitHub repository is an attempt to build a news tracker for ABC Relations Inc. This markdown file will serve as the final report for the mini-project, and will **detail the design of the application and workflow**, together with **the explanation for the models employed** to achieve the objectives.
 
@@ -93,6 +83,15 @@ The workflow of the application is as follows:
 ## Screenshots
 
 These screenshots serve as an example how to use the application and visualise the processed data.
+
+![overview](screenshots/overview.png?raw=true)
+An overview page can be displayed as above. (Upper left) Users can start exploring from this cell, where the daily average sentiment scores for each company can be inspected. Users can identify if there is a upsurge or downfall in the average sentiment scores and for example if there is a sudden downfall in scores, users might want to click on a specific row and discover more on the reasons why the sentiment score seems to be bad for that specific company. (Right) Users can look into further details in this cell, where summaries of articles for a company in a day are displayed. Users can read the titles and the extractive summaries to quickly understand what is going on for the company in a short period of time. (Lower left) When clicked on each article on the right cell, a list of key entities would be displayed. It is ranked in descending order of importance, therefore users should focus on the top rows to see who are the key players in the events each article describes.
+
+![overview](screenshots/trend.png?raw=true)
+Moreover, the output data can be used to analyse trends in the sentiments for each company. For instance, we can plot the daily sentiment across time to compare the trends of sentiments for different companies and see if there is a general trend in a particular industry, let's say. 
+
+![overview](screenshots/wordcloud.png?raw=true)
+Last but not least, it is also possible to visualise each article as a word cloud, sized by the sentiment scores or the counts. This gives an visually intuitive understanding about the article, which could help users get a sense of the main idea of the article in a shorter period of time.
 
 ## Ideas that are not implemented
 
