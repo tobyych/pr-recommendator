@@ -57,7 +57,7 @@ class DB:
     c = conn.cursor()
     c.execute('CREATE TABLE IF NOT EXISTS news (id integer primary key autoincrement, company text, title text, content text, author text, published_at text, crawled_at text, title_hash int, content_hash int)')
     c.execute('CREATE TABLE IF NOT EXISTS news_ner(news_id int, entity_text text, rank num, FOREIGN KEY(news_id) REFERENCES news(id))')
-    c.execute('CREATE TABLE IF NOT EXISTS news_summary(news_id int, abstractive_summary text, extractive_summary text, sentiment_score num, FOREIGN KEY(news_id) REFERENCES news(id))')
+    c.execute('CREATE TABLE IF NOT EXISTS news_summary(news_id int, abstractive_summary text, extractive_summary text, sentiment_score num, ab_sentiment text, FOREIGN KEY(news_id) REFERENCES news(id))')
     conn.commit()
     conn.close()
 

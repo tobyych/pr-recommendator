@@ -20,3 +20,4 @@ class ArticleSummary(NamedTuple):
   abstractive_summary: str
   extractive_summary: str
   sentiment_score: float
+  ab_sentiment: str
