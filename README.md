@@ -51,6 +51,11 @@ To fulfil the project focuses:
 
 **Exact duplicate** is also checked at insertion into the database. The implementation is done by hashing the article into a numeric value and check whether there is a document with the exact same hash in the database table already. A row can only be inserted if there is no existing row with same hash in the database table.
 
+## Project Archietecture
+
+The below mindmap explains the archietecture for the current state of the application:
+![mindmap](screenshots/mindmap.png?raw=true)
+
 ### Details
 
 #### Text summarisation
