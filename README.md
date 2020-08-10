@@ -10,6 +10,16 @@ ABC Relations Inc. is a traditional Public Relation firm helping clients to prot
 
 ABC Relations Inc. wants to actively track their clients’ news and react timely. However, most PR managers do not have enough time to read all news contents everyday, and because most of them are not from computing background, they would not understand too much technical details. What they want is a user-friendly tool to **notify them, tell them briefly what happened, provide background knowledge of the full story, identify key persons/companies who are relative/responsible, and ideally, PR reaction suggestions**. Meanwhile, this application should also be careful about **fake news**, **duplicate contents**, **out-of-date articles**, etc. In other words, whatever results this application provide, should always be accurate.
 
+## PR Strategies
+
+- Business events
+- Community relations
+- Corporate and social responsibility
+- Crisis management
+- Employee relations
+- Media relations
+- Social media
+
 ## Project Focus
 
 The primary objective of this project is to build a toolset that can aid PR managers to:
@@ -72,7 +82,7 @@ The workflow of the application is as follows:
 
 ## Screenshots
 
-These screenshots serve as an example how to use the application and visualise the processed data.
+These screenshots serve as an example how to use the application and visualise the processed data. These screenshots are obtained by importing the processed data in the database into a business intelligence software (Power BI Desktop).
 
 ![overview](screenshots/overview.png?raw=true)
 An overview page can be displayed as above. (Upper left) Users can start exploring from this cell, where the daily average sentiment scores for each company can be inspected. Users can identify if there is a upsurge or downfall in the average sentiment scores and for example if there is a sudden downfall in scores, users might want to click on a specific row and discover more on the reasons why the sentiment score seems to be bad for that specific company. (Right) Users can look into further details in this cell, where summaries of articles for a company in a day are displayed. Users can read the titles and the extractive summaries to quickly understand what is going on for the company in a short period of time. (Lower left) This is a cell to show the key entities in an article. 
@@ -85,6 +95,22 @@ Moreover, the output data can be used to analyse trends in the sentiments for ea
 
 ![wordcloud](screenshots/wordcloud.png?raw=true)
 Last but not least, it is also possible to visualise each article as a word cloud, sized by the sentiment scores or the counts. This gives an visually intuitive understanding about the article, which could help users get a sense of the main idea of the article in a shorter period of time.
+
+## Example usage
+
+Here is an example usage to find potential business opportunity for ABC Relations Inc. Suppose that the main target customers for ABC Relations Inc. are big technological firms including Apple, Facebook, Google, Huawei and Telsa. PR manager would like to use this tool to track the sentiment for these companies across time.
+
+![example1](screenshots/huawei1.png?raw=true)
+For instance, from the upper left cell, it is observed that the sentiment scores for Huawei have been decreasing lately, implying that there might be a crisis for their business reputation. The PR manager may identify this as a business opportunity to reach out to Huawei and pitch them a PR strategy to reverse the negative public image and opinions about the company. To understand the feasibility and the reasons why the public have not been optimistic about the company, the manager can click on one of the rows to see what articles contribute to the negative score at a particular date. 
+
+![example2](screenshots/huawei2.png?raw=true)
+When the manager clicked on 4 August 2020, the right cell would show all the articles about Huawei on that day. Two out of three articles mainly highlight that China is trying to pursue economic self-reliance amid rising tensions with the U.S. This seems to be contributing to a positive signal for Chinese technological giant like Huawei.
+
+![example3](screenshots/huawei3.png?raw=true)
+However, when clicked on 7 August 2020, there are seven out of eight articles which are marked negative as its sentiment. Upon reading the titles and the summaries, the reason for the negative signal is due to "Trump bans U.S. firms from dealing with China-based owners of TikTok and WeChat", which is analogical to the governmental pressure exerted on Huawei from the White House.
+
+![example4](screenshots/huawei4.png?raw=true)
+To understand who are the key entities in the recent events, the manager can click on one of the articles in the right cell and read the listed key entities in the lower left cell. It is observed that the U.S. State Secretary of State Mike Pompeo, President Donald Trump and Global Times are displayed. This can help the manager to understand who are the stakeholders in this event, and whether or not it is feasible or plausible to devise a PR strategy for Huawei that matches ABC Relations Inc.'s risk appetite.
 
 ## Ideas that are not implemented
 
