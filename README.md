@@ -64,13 +64,13 @@ Extractive summarisation is powered by the pretrained BERT model. First, the doc
 
 On the other hand, for abstractive summarisation, a pretrained version of T5 (Text-to-text Transfer Transformer) [(link to original paper)](https://arxiv.org/pdf/1910.10683.pdf) is used. The main capability of this model is its ability to operate all a multitude of NLP tasks including text summarisation. It is a model that conditionally generate output based on the input, for example, if we give it an input "summarize: ...", the output would be a summary of the given text.
 
-### Key entities detection
+#### Key entities detection
 
 spaCy v2.0's Named Entity Recognition (NER) is employed to find the key entities in each article. The NER system in spaCy incorporates the use of a residual convolutional nerual network with bloom embeddings, based on transitions of the entity tags in a sequence. 1D convolutional filters are applied over the input text to predict how the upcoming words may change the current entity tags. Upcoming words may either shift (change the entity), reduce (make the entity more granular), or output the entity. The input sequence is embedded with bloom embeddings, which model the characters, prefix, suffix, and part of speech of each word. Residual blocks are used for the CNNs, and the filter sizes are chosen with beam search.
 
 As we are interested in person or organisations instead of any possible entity, we would like to refine the key entities recognized in the above algorithm. A word-level ranking algorithm is thus useful for selecting particularly interesting entities. The algorithm used in the application is [TextRank](http://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf). It is a graph-based algorithm where the graph is constructed by looking which words follow one another. The edge weight is defined to be higher whenever two words occur more frequently next to each other in the text.
 
-### Sentiment scoring
+#### Sentiment scoring
 
 Each article will receive two sentiment scores, one is the overall score for the whole article, another is the aspect-based sentiment score. The overall score is given by the sentiment module in a Python library called [TextBlob](https://textblob.readthedocs.io/en/dev/). The sentiment scorer is implemented using a Naive Bayes algorithm trained on annotated movie reviews and it calculates the average polarity and subjectivity over the words in a document. The inference speed is very fast compared to deep learning models and the memory footprint is low, which makes it suitable for real-world application.
 
