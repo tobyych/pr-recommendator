@@ -10,16 +10,6 @@ ABC Relations Inc. is a traditional Public Relation firm helping clients to prot
 
 ABC Relations Inc. wants to actively track their clients’ news and react timely. However, most PR managers do not have enough time to read all news contents everyday, and because most of them are not from computing background, they would not understand too much technical details. What they want is a user-friendly tool to **notify them, tell them briefly what happened, provide background knowledge of the full story, identify key persons/companies who are relative/responsible, and ideally, PR reaction suggestions**. Meanwhile, this application should also be careful about **fake news**, **duplicate contents**, **out-of-date articles**, etc. In other words, whatever results this application provide, should always be accurate.
 
-## PR Strategies
-
-- Business events
-- Community relations
-- Corporate and social responsibility
-- Crisis management
-- Employee relations
-- Media relations
-- Social media
-
 ## Project Focus
 
 The primary objective of this project is to build a toolset that can aid PR managers to:
