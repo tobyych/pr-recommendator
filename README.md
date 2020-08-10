@@ -121,3 +121,25 @@ There are several ideas that I think are interesting to the application but not 
 - Incorporate competitiors as information to the application, so that when a competitor is mentioned as a key entity in an article, it may be of higher interest for the PR manager to read.
 - Survey the most interesting questions PR manager may ask when they first read an article. Form templates and use model such as BERT to perform such question answering task.
 - Simplify the language used in the article, and link rare words with references in Wikipedia, so that users can understand the article better without much background knowledge.
+
+## Installation
+
+An example to install this project in an UNIX shell. The first two commands may be skipped if a virtual environment is not required.
+
+```shell
+foo@bar:~/pr-recommendator$ python3 -m venv venv
+foo@bar:~/pr-recommendator$ source venv/bin/activate
+foo@bar:~/pr-recommendator$ pip install -r requirements.txt
+foo@bar:~/pr-recommendator$ cd app
+foo@bar:~/pr-recommendator/app$ python news.py --help
+usage: news.py [-h] [--init] [--crawl] [--process]
+
+PR Recommendator - a news tracking application
+
+optional arguments:
+  -h, --help  show this help message and exit
+  --init      create tables in SQLite DB
+  --crawl     crawl news articles from public APIs
+  --process   process the news articles inside DB
+```
+
