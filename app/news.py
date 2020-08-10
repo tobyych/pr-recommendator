@@ -1,5 +1,5 @@
 import os
-os.environ['PYTHONHASHSEED'] = 0
+os.environ['PYTHONHASHSEED'] = '0'
 
 TARGETS = ['facebook', 'apple', 'google', 'tesla', 'huawei']
 

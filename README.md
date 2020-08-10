@@ -87,10 +87,13 @@ These screenshots serve as an example how to use the application and visualise t
 ![overview](screenshots/overview.png?raw=true)
 An overview page can be displayed as above. (Upper left) Users can start exploring from this cell, where the daily average sentiment scores for each company can be inspected. Users can identify if there is a upsurge or downfall in the average sentiment scores and for example if there is a sudden downfall in scores, users might want to click on a specific row and discover more on the reasons why the sentiment score seems to be bad for that specific company. (Right) Users can look into further details in this cell, where summaries of articles for a company in a day are displayed. Users can read the titles and the extractive summaries to quickly understand what is going on for the company in a short period of time. (Lower left) When clicked on each article on the right cell, a list of key entities would be displayed. It is ranked in descending order of importance, therefore users should focus on the top rows to see who are the key players in the events each article describes.
 
-![overview](screenshots/trend.png?raw=true)
+![entities](screenshots/entities.png?raw=true)
+A close-up look on the key entities part. When an article is selected, the lower left cell will display the key entities appeared in that article. There is a rank score to show in descending order of importance.
+
+![trend](screenshots/trend.png?raw=true)
 Moreover, the output data can be used to analyse trends in the sentiments for each company. For instance, we can plot the daily sentiment across time to compare the trends of sentiments for different companies and see if there is a general trend in a particular industry, let's say. 
 
-![overview](screenshots/wordcloud.png?raw=true)
+![wordcloud](screenshots/wordcloud.png?raw=true)
 Last but not least, it is also possible to visualise each article as a word cloud, sized by the sentiment scores or the counts. This gives an visually intuitive understanding about the article, which could help users get a sense of the main idea of the article in a shorter period of time.
 
 ## Ideas that are not implemented
